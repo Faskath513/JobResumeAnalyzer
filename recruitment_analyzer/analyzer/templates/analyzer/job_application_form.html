@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Form</title>
+    <style>
+        /* Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-size: 26px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="file"],
+        textarea {
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="file"]:focus,
+        textarea:focus {
+            border-color: #ff6200;
+            outline: none;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .error {
+            color: #d9534f;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 12px;
+            font-size: 18px;
+            background-color: #ff6200;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #ff6200;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Job Application Form</h1>
+
+        <!-- Error messages display -->
+        {% if form.errors %}
+            <div class="error">
+                <p>Please correct the errors below:</p>
+            </div>
+        {% endif %}
+
+        <!-- Job application form -->
+        <form method="post" enctype="multipart/form-data" action="{% url 'analyzer:create_job_application' %}">
+
+            {% csrf_token %}
+
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+                {% if form.name.errors %}
+                    <div class="error">
+                        {% for error in form.name.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+                {% if form.email.errors %}
+                    <div class="error">
+                        {% for error in form.email.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="phone_number">Phone Number</label>
+                <input type="tel" id="phone_number" name="phone_number">
+            </div>
+
+            <div class="form-group">
+                <label for="job_position">Job Position</label>
+                <input type="text" id="job_position" name="job_position" required>
+                {% if form.job_position.errors %}
+                    <div class="error">
+                        {% for error in form.job_position.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="resume">Resume</label>
+                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                {% if form.resume.errors %}
+                    <div class="error">
+                        {% for error in form.resume.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="cover_letter">Cover Letter</label>
+                <input type="file" id="cover_letter" name="cover_letter" accept=".pdf,.doc,.docx" required>
+                {% if form.cover_letter.errors %}
+                    <div class="error">
+                        {% for error in form.cover_letter.errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <button type="submit">Submit Application</button>
+        </form>
+    </div>
+    <script>
+document.querySelector('form').addEventListener('submit', function(event) {
+    const resumeInput = document.getElementById('resume');
+    const coverLetterInput = document.getElementById('cover_letter');
+
+    if (!resumeInput.files.length) {
+        alert('Please upload your resume.');
+        event.preventDefault(); // Prevent the form from submitting
+    } else if (!coverLetterInput.files.length) {
+        alert('Please upload your cover letter.');
+        event.preventDefault(); // Prevent the form from submitting
+    }
+});
+</script>
+
+
+
+</body>
+</html>

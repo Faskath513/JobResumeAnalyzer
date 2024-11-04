@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analysis Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            max-width: 800px; /* Center the content and limit width */
+            margin-left: auto;
+            margin-right: auto; /* Centering the page */
+        }
+        h2 {
+            color: #333;
+            margin-top: 20px;
+        }
+        ul {
+            list-style-type: none; /* Remove bullets */
+            padding: 0;
+        }
+        li {
+            background: #fff;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+        .button-container {
+            margin-top: 20px;
+            text-align: center; /* Center the button */
+        }
+        button {
+            background-color: #5cb85c;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px; /* Increase button font size */
+        }
+        button:hover {
+            background-color: #4cae4c;
+        }
+        .error {
+            color: red;
+            text-align: center; /* Center error messages */
+        }
+    </style>
+    <script>
+        function goBack() {
+            window.history.back(); // Go back to the previous page
+        }
+    </script>
+</head>
+<body>
+    <h2>Extracted Keywords from Job Description</h2>
+    <p>Here are the keywords identified from the job description you provided:</p>
+    <ul role="list">
+        {% for keyword in job_keywords %}
+            <li>{{ keyword }}</li>
+        {% empty %}
+            <li>No keywords found in the job description.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Extracted Keywords from Resume</h2>
+    <p>Below are the keywords extracted from your resume:</p>
+    <ul role="list">
+        {% for keyword in resume_keywords %}
+            <li>{{ keyword }}</li>
+        {% empty %}
+            <li>No keywords found in the resume.</li>
+        {% endfor %}
+    </ul>
+
+    <h2>Common Keywords</h2>
+    <p>These keywords were found in both the job description and your resume:</p>
+    <ul role="list">
+        {% for keyword in common_keywords %}
+            <li>{{ keyword }}</li>
+        {% empty %}
+            <li>No common keywords found.</li>
+        {% endfor %}
+    </ul>
+
+    <div class="button-container">
+        <button onclick="goBack()">Go Back</button>
+    </div>
+</body>
+</html>

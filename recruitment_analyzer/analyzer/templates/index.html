@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Job Application Analyzer</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: Arial, sans-serif;
+        }
+
+        .hero {
+            background-color: #343a40;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+        }
+
+        .feature-icon {
+            font-size: 50px;
+            color: #ff6f00;
+        }
+
+        .feature {
+            margin-bottom: 30px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        footer a {
+            color: #ff7300;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="container">
+            <h1>Welcome to Job Application Analyzer</h1>
+            <p>Your one-stop solution for managing job applications effectively.</p>
+            <a href="{% url 'analyzer:create_job_application' %}" class="btn btn-outline-light btn-lg">Submit Application</a>
+            <br><br><br>
+            <a href="{% url 'analyzer:view_applications' %}" class="btn btn-outline-light btn-lg">View Applications</a>
+            <br><br><br>
+            <a href="{% url 'analyzer:analyze_job_and_resume' %}" class="btn btn-outline-light btn-lg">Job Analyze</a>
+
+{#            <a href="{% url 'analyzer:api_recent_job_applications' %}" class="btn btn-outline-light btn-lg">Recent Job Applications</a>#}
+
+            <!-- Dynamically generated links for each application -->
+{#            <div class="mt-4">#}
+{#                <h4>Your Applications:</h4>#}
+{#                {% for application in applications %}#}
+{#                    <div class="mb-2">#}
+{#                        <strong>Application ID: {{ application.id }}</strong>#}
+{#                        <div>#}
+{#                            <a href="{% url 'analyzer:edit_application' application.id %}" class="btn btn-outline-light btn-sm">Edit Application</a>#}
+{#                            <a href="{% url 'analyzer:delete_application' application.id %}" class="btn btn-outline-danger btn-sm">Delete Application</a>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                {% empty %}#}
+{#                    <p>No applications found.</p>#}
+{#                {% endfor %}#}
+{#            </div>#}
+        </div>
+    </header>
+
+    <!-- Features Section -->
+    <section class="features py-5">
+        <div class="container text-center">
+            <h2 class="mb-4">Features</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="feature">
+                        <i class="feature-icon fas fa-paper-plane"></i>
+                        <h3>Easy Application Submission</h3>
+                        <p>Submit your job application in just a few clicks!</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature">
+                        <i class="feature-icon fas fa-check-circle"></i>
+                        <h3>Track Your Status</h3>
+                        <p>Stay updated with the status of your application anytime.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="feature">
+                        <i class="feature-icon fas fa-user-check"></i>
+                        <h3>User-Friendly Interface</h3>
+                        <p>Our interface is designed for ease of use and accessibility.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 Mohamed Faskath. All Rights Reserved.</p>
+            <p><a href="mailto:faskath2001@gmail.com">Contact Us</a></p>
+        </div>
+    </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>
